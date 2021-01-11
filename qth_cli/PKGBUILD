@@ -1,0 +1,22 @@
+pkgname="qth_cli"
+pkgdesc="Command line interface to the Qth home automation system"
+url="https://github.com/mossblaser/qth_cli"
+pkgver="0.3.4"
+pkgrel="1"
+arch=('x86_64')
+license=('GPL')
+
+depends=('paho-mqtt-c-git>=1.3.0' 'json-c>=0.15')
+
+source=("$pkgname-$pkgver.tar.gz::https://github.com/mossblaser/$pkgname/archive/v$pkgver.tar.gz")
+md5sums=('817c2da5336dbb5bccc4bfd611b290ba')
+
+build() {
+  cd "$pkgname-$pkgver"
+  make PREFIX=/usr
+}
+
+package() {
+  cd "$pkgname-$pkgver"
+  make DESTDIR="$pkgdir" PREFIX="/usr" install
+}
