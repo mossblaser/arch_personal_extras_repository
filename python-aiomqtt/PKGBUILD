@@ -1,0 +1,24 @@
+_name="aiomqtt"
+pkgname="python-$_name"
+pkgdesc="asyncio wrapper for python-paho-mqtt"
+url="https://github.com/mossblaser/aiomqtt"
+pkgver="0.1.1"
+pkgrel="1"
+arch=('any')
+license=('GPL')
+
+depends=('python-paho-mqtt>=1.5')
+makedepends=('python-setuptools')
+
+source=("https://pypi.io/packages/source/${_name::1}/$_name/$_name-$pkgver.tar.gz")
+md5sums=('b57d3d43da9af5df5830b2c205640b19')
+
+build() {
+  cd "$_name-$pkgver"
+  python setup.py build
+}
+
+package() {
+  cd "$_name-$pkgver"
+  python setup.py install --root="$pkgdir" --optimize=1 --skip-build
+}
