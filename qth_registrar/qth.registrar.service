@@ -1,0 +1,14 @@
+[Unit]
+Description=The Qth Registrar
+Requires=mosquitto.service
+After=mosquitto.service
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=qth_registrar
+Restart=on-failure
+
+DynamicUser=yes

@@ -1,0 +1,17 @@
+[Unit]
+Description=The Qth Alias service
+Requires=qth.registrar.service
+After=qth.registrar.service
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=qth_alias --cache ${STATE_DIRECTORY}/cache.json
+Restart=on-failure
+
+DynamicUser=yes
+
+# i.e. /var/lib/qth_alias
+StateDirectory=qth_alias

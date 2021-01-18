@@ -1,0 +1,25 @@
+pkgname="qth_registrar"
+pkgdesc="A Qth Registrar implementation"
+url="https://github.com/mossblaser/qth_registrar"
+pkgver="0.2.4"
+pkgrel="1"
+arch=('any')
+license=('GPL2')
+
+depends=('python-qth>=0.6.0' 'python-setuptools')
+
+source=("https://pypi.io/packages/source/${pkgname::1}/$pkgname/$pkgname-$pkgver.tar.gz"
+        "${pkgname/_/.}.service")
+md5sums=('df374879e8351815c856cd31ded55ef1'
+         '81ba22d9ba7269931a764975dbf52b1b')
+
+build() {
+  cd "$pkgname-$pkgver"
+  python setup.py build
+}
+
+package() {
+  cd "$pkgname-$pkgver"
+  python setup.py install --root="$pkgdir" --optimize=1 --skip-build
+  install -Dm644 "$srcdir/${pkgname/_/.}.service" "$pkgdir/usr/lib/systemd/system/${pkgname/_/.}.service"
+}

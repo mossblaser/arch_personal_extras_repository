@@ -1,0 +1,25 @@
+pkgname="qth_alias"
+pkgdesc="Create aliases for Qth properties and events"
+url="https://github.com/mossblaser/qth_alias"
+pkgver="0.1.3"
+pkgrel="1"
+arch=('any')
+license=('GPL2')
+
+depends=('python-qth>=0.6.0' 'python-qth-ls>=0.1.0' 'python-setuptools')
+
+source=("https://pypi.io/packages/source/${pkgname::1}/$pkgname/$pkgname-$pkgver.tar.gz"
+        "${pkgname/_/.}.service")
+md5sums=('13d8a4f86e9840415da8f878a230b7d1'
+         '9ad44157ddf6eb9014832a3ef17cb1bf')
+
+build() {
+  cd "$pkgname-$pkgver"
+  python setup.py build
+}
+
+package() {
+  cd "$pkgname-$pkgver"
+  python setup.py install --root="$pkgdir" --optimize=1 --skip-build
+  install -Dm644 "$srcdir/${pkgname/_/.}.service" "$pkgdir/usr/lib/systemd/system/${pkgname/_/.}.service"
+}
