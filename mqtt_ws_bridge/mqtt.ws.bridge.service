@@ -1,0 +1,14 @@
+[Unit]
+Description=Websocket to TCP Bridge for MQTT
+Requires=mosquitto.service
+After=mosquitto.service
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=mqtt_ws_bridge
+Restart=on-failure
+
+DynamicUser=yes

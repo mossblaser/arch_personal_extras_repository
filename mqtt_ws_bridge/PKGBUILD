@@ -1,0 +1,25 @@
+pkgname="mqtt_ws_bridge"
+pkgdesc="Websocket to TCP Bridge for MQTT"
+url="https://github.com/mossblaser/mqtt_ws_bridge"
+pkgver="0.1.1"
+pkgrel="1"
+arch=('any')
+license=('GPL2')
+
+depends=('python-websockets>=8.1' 'python-setuptools')
+
+source=("https://pypi.io/packages/source/${pkgname::1}/$pkgname/$pkgname-$pkgver.tar.gz"
+        "${pkgname//_/.}.service")
+md5sums=('08f6facaefaed2862e10c0fcb8d4cb68'
+         '0cb328e269525a999fcfadedf9d29bf5')
+
+build() {
+  cd "$pkgname-$pkgver"
+  python setup.py build
+}
+
+package() {
+  cd "$pkgname-$pkgver"
+  python setup.py install --root="$pkgdir" --optimize=1 --skip-build
+  install -Dm644 "$srcdir/${pkgname//_/.}.service" "$pkgdir/usr/lib/systemd/system/${pkgname//_/.}.service"
+}
