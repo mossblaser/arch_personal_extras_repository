@@ -1,0 +1,32 @@
+pkgname="qth_browser"
+pkgdesc="Qth web interface"
+url="https://github.com/mossblaser/${name}"
+pkgver="0.1.1"
+pkgrel="1"
+arch=('any')
+license=('GPL2')
+
+makedepends=('nodejs>=15.0.0')
+
+source=(${pkgname}-${pkgver}.tar.gz::"https://github.com/mossblaser/$pkgname/archive/v$pkgver.tar.gz")
+md5sums=('ee21543e19930904ad5e5cb9f7761ee9')
+
+options=(!strip)
+
+build() {
+    cd $pkgname-$pkgver/
+    
+    npm install --cache "${srcdir}/npm-cache"
+    npm run build
+}
+
+package() {
+    local install_dir="$pkgdir/usr/share/webapps/$pkgname"
+    
+    install -d "$install_dir"
+    
+    cp -r "$srcdir/$pkgname-$pkgver/dist/"* "$install_dir/"
+    
+    chown -R root:http "$install_dir"
+    chmod -R 755 "$install_dir"
+}
