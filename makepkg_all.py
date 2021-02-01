@@ -1,5 +1,9 @@
 """
 Utility which re-runs makepkg for all packages.
+
+Usage::
+
+    $ python makepkg_all.py [OPTIONAL_NUM_CPUS] [OPTIONAL EXTRA MAKEPKG ARGS ...]
 """
 
 import os

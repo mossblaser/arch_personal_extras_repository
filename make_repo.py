@@ -1,6 +1,10 @@
 """
 Utility which generates a package repository from the build packages in this
 directory.
+
+Usage::
+
+    $ python make_repo.py REPO_NAME_HERE
 """
 
 import os
@@ -21,6 +25,8 @@ except IndexError:
 
 failed = False
 
+repo_dir.mkdir(parents=True, exist_ok=True)
+
 all_packages = []
 for pkgbuild in root_path.glob("*/PKGBUILD"):
     package = pkgbuild.parent
@@ -35,7 +41,7 @@ for pkgbuild in root_path.glob("*/PKGBUILD"):
     copy(package, target)
     all_packages.append(target)
 
-result = run(["repo-add", repo_dir / "repo.db.tar.gz"] + all_packages)
+result = run(["repo-add", repo_dir / f"{repo_dir.name}.db.tar.gz"] + all_packages)
 
 if failed or result.returncode != 0:
     sys.exit(1)
