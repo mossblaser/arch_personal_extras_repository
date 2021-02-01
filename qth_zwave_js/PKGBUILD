@@ -2,16 +2,20 @@ pkgname="qth_zwave_js"
 pkgdesc="Qth web interface"
 url="https://github.com/mossblaser/${name}"
 pkgver="0.1.0"
-pkgrel="2"
+pkgrel="6"
 arch=('any')
 license=('GPL2')
+
+depends=('nodejs>=15.0.0')
 
 makedepends=('nodejs>=15.0.0')
 
 source=("${pkgname}-${pkgver}.tar.gz::https://github.com/mossblaser/$pkgname/archive/v$pkgver.tar.gz"
+        "generate_indices.js"
         "${pkgname//_/.}.service")
 md5sums=('2f81ba07d154ae691dc53f9d50c7d7ea'
-         '8eaa478971be378f8841fc14aa47228e')
+         'd8edfafca6417294e61628449ceb5420'
+         'cde6f0ae8efd446730bf23d354956cab')
 
 options=(!strip)
 
@@ -24,9 +28,15 @@ build() {
 package() {
     npm install -g --user root --prefix "$pkgdir/usr" "$srcdir/$pkgname-$pkgver/$pkgname-$pkgver.tgz"
     
+    # Fix missing indices in build
+    NODE_PATH=$pkgdir/usr/lib/node_modules/qth_zwave_js/node_modules/ node $srcdir/generate_indices.js
+    
     # Work around NPM permissions bugginess
     find "${pkgdir}/usr" -type d -exec chmod 755 {} +
     chown -R root:root "${pkgdir}"
+    
+    # BODGE: Zwave-js requires write access(!) to its own files
+    chmod 777 -R "${pkgdir}/usr/lib/node_modules/qth_zwave_js/node_modules/@zwave-js/config"
   
     install -Dm644 "$srcdir/${pkgname//_/.}.service" "$pkgdir/usr/lib/systemd/system/${pkgname//_/.}.service"
 }

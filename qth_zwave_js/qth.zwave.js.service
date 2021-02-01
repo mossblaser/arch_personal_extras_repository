@@ -13,5 +13,8 @@ Restart=on-failure
 
 DynamicUser=yes
 
+# Required for serial port
+SupplementaryGroups=uucp
+
 # i.e. /var/lib/qth_zwave_js
 StateDirectory=qth_zwave_js
