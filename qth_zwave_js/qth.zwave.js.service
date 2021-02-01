@@ -1,0 +1,17 @@
+[Unit]
+Description=The Qth Zwave bridge service
+Requires=qth.registrar.service
+After=qth.registrar.service
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=qth_zwave_js --cache-dir ${STATE_DIRECTORY}/cache --serial-port /dev/ttyACM0
+Restart=on-failure
+
+DynamicUser=yes
+
+# i.e. /var/lib/qth_zwave_js
+StateDirectory=qth_zwave_js

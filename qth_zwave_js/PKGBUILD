@@ -2,15 +2,16 @@ pkgname="qth_zwave_js"
 pkgdesc="Qth web interface"
 url="https://github.com/mossblaser/${name}"
 pkgver="0.1.0"
-pkgrel="1"
+pkgrel="2"
 arch=('any')
 license=('GPL2')
 
 makedepends=('nodejs>=15.0.0')
 
-source=("${pkgname}-${pkgver}.tar.gz::https://github.com/mossblaser/$pkgname/archive/v$pkgver.tar.gz")
-md5sums=('2f81ba07d154ae691dc53f9d50c7d7ea')
-
+source=("${pkgname}-${pkgver}.tar.gz::https://github.com/mossblaser/$pkgname/archive/v$pkgver.tar.gz"
+        "${pkgname//_/.}.service")
+md5sums=('2f81ba07d154ae691dc53f9d50c7d7ea'
+         '8eaa478971be378f8841fc14aa47228e')
 
 options=(!strip)
 
@@ -26,4 +27,6 @@ package() {
     # Work around NPM permissions bugginess
     find "${pkgdir}/usr" -type d -exec chmod 755 {} +
     chown -R root:root "${pkgdir}"
+  
+    install -Dm644 "$srcdir/${pkgname//_/.}.service" "$pkgdir/usr/lib/systemd/system/${pkgname//_/.}.service"
 }
