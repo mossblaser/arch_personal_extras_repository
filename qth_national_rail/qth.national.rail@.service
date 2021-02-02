@@ -1,0 +1,16 @@
+[Unit]
+Description=Qth national rail status to %I
+Requires=qth.registrar.service
+After=qth.registrar.service
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Type=simple
+
+EnvironmentFile=-/etc/qth_national_rail.env
+ExecStart=qth_national_rail ${API_KEY} ${START_STATION_CODE} %i --path=rail/to-%I
+
+Restart=on-failure
+DynamicUser=yes

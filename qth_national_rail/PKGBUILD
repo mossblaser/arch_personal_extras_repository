@@ -1,0 +1,30 @@
+pkgname="qth_national_rail"
+pkgdesc="show national rail service status in qth"
+url="https://github.com/mossblaser/qth_national_rail"
+pkgver="0.1.3"
+pkgrel="2"
+arch=('any')
+license=('GPL2')
+
+depends=('python-qth>=0.6.0' 'python-zeep' 'python-setuptools')
+
+source=("https://pypi.io/packages/source/${pkgname::1}/$pkgname/$pkgname-$pkgver.tar.gz"
+        "${pkgname}.env"
+        "${pkgname//_/.}@.service")
+md5sums=('e80c1b165a6e7f947b96a07396c7a463'
+         'a383d591ac327a039ab4d8c2f5af95ae'
+         '61919e9912ce5d6e693179aa393fb5b0')
+backup=("etc/${pkgname}.env")
+
+build() {
+  cd "$pkgname-$pkgver"
+  python setup.py build
+}
+
+package() {
+  cd "$pkgname-$pkgver"
+  python setup.py install --root="$pkgdir" --optimize=1 --skip-build
+  
+  install -Dm644 "$srcdir/${pkgname//_/.}@.service" "$pkgdir/usr/lib/systemd/system/${pkgname//_/.}@.service"
+  install -Dm644 "$srcdir/${pkgname}.env" "$pkgdir/etc/${pkgname}.env"
+}
