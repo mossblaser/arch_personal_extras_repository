@@ -11,10 +11,7 @@ Type=simple
 ExecStart=qth_zwave_js --cache-dir ${STATE_DIRECTORY}/cache --serial-port /dev/ttyACM0
 Restart=on-failure
 
-DynamicUser=yes
-
-# Required for serial port
-SupplementaryGroups=uucp
+User=qth_zwave_js
 
 # i.e. /var/lib/qth_zwave_js
 StateDirectory=qth_zwave_js
