@@ -1,0 +1,16 @@
+[Unit]
+Description=Qth control over Panasonic TVs
+Requires=qth.registrar.service
+After=qth.registrar.service
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Type=simple
+
+EnvironmentFile=-/etc/qth_panasonic_viera.env
+ExecStart=qth_panasonic_viera ${TV_HOSTNAME} ${TV_QTH_PATH}
+
+Restart=on-failure
+DynamicUser=yes
