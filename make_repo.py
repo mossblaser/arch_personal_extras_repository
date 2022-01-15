@@ -31,11 +31,11 @@ all_packages = []
 for pkgbuild in root_path.glob("*/PKGBUILD"):
     package = pkgbuild.parent
     
-    packages = list(package.glob("*.zst"))
-    if len(packages) != 1:
-        sys.stderr.write(f"Error: Found {len(packages)} packages files in {package.relative_to(root_path)}\n")
+    packages = sorted(package.glob("*.zst"), key=lambda f: f.stat().st_mtime)
+    if not packages:
+        sys.stderr.write(f"Error: Found no packages files in {package.relative_to(root_path)}\n")
         continue
-    package = packages[0]
+    package = packages[-1]
     
     target = repo_dir / package.name
     copy(package, target)

@@ -2,11 +2,11 @@ pkgname="tiddlyserver"
 pkgdesc="A personal TiddlyWiki sync server"
 url="https://github.com/mossblaser/tiddlyserver"
 pkgver="0.2.0"
-pkgrel="1"
+pkgrel="2"
 arch=('any')
 license=('GPL2')
 
-depends=('python-flask>=2.0' 'python-waitress>=2.0' 'python-gitpython>=3.0' 'python-setuptools')
+depends=('python-flask>=2.0' 'python-waitress>=2.0' 'python-gitpython>=3.0' 'python-setuptools' 'python>=3.10.0' 'python<3.11.0')
 makedepends=('python-build')
 
 source=("https://pypi.io/packages/source/${pkgname::1}/$pkgname/$pkgname-$pkgver.tar.gz")

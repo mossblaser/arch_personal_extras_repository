@@ -1,16 +1,16 @@
 pkgname="qth_registrar"
 pkgdesc="A Qth Registrar implementation"
 url="https://github.com/mossblaser/qth_registrar"
-pkgver="0.2.4"
-pkgrel="1"
+pkgver="0.3.0"
+pkgrel="0"
 arch=('any')
 license=('GPL2')
 
-depends=('python-qth>=0.6.0' 'python-setuptools')
+depends=('python-qth>=0.7.0' 'python-setuptools' 'python>=3.10.0' 'python<3.11.0')
 
 source=("https://pypi.io/packages/source/${pkgname::1}/$pkgname/$pkgname-$pkgver.tar.gz"
         "${pkgname/_/.}.service")
-md5sums=('df374879e8351815c856cd31ded55ef1'
+md5sums=('1321078f27922805c96cd4379a8fe087'
          '81ba22d9ba7269931a764975dbf52b1b')
 
 build() {

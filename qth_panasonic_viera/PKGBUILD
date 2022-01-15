@@ -1,17 +1,17 @@
 pkgname="qth_panasonic_viera"
 pkgdesc="Qth interface to certain panasonic TVs"
 url="https://github.com/mossblaser/qth_pansonic_viera"
-pkgver="0.1.0"
-pkgrel="1"
+pkgver="0.2.0"
+pkgrel="0"
 arch=('any')
 license=('GPL2')
 
-depends=('python-qth>=0.6.0' 'python-panasonic-viera>=0.1.0' 'python-setuptools')
+depends=('python-qth>=0.7.0' 'python-panasonic-viera>=0.1.0' 'python-setuptools' 'python>=3.10.0' 'python<3.11.0')
 
 source=("https://pypi.io/packages/source/${pkgname::1}/$pkgname/$pkgname-$pkgver.tar.gz"
         "${pkgname}.env"
         "${pkgname//_/.}.service")
-md5sums=('20fa888b4b24f0329ce1c5cd1820d786'
+md5sums=('ea714be7b9d714991cacc620cf29d661'
          '6dfa17c52ca6c27b61d3b207d6d7dc81'
          '371dce26d545d26126e0e168a0566d51')
 backup=("etc/${pkgname}.env")

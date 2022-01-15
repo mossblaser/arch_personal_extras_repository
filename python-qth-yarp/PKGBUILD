@@ -2,16 +2,16 @@ _name="qth-yarp"
 pkgname="python-$_name"
 pkgdesc="Reactive-ish programming bindings for Qth"
 url="https://github.com/mossblaser/qth_yarp"
-pkgver="0.2.0"
-pkgrel="1"
+pkgver="0.3.0"
+pkgrel="0"
 arch=('any')
 license=('GPL2')
 
-depends=('python-qth>=0.6.0' 'python-yarp>=0.4.0')
+depends=('python-qth>=0.7.0' 'python-yarp>=0.4.0' 'python>=3.10.0' 'python<3.11.0')
 makedepends=('python-setuptools')
 
 source=("https://pypi.io/packages/source/${_name::1}/$_name/${_name/-/_}-$pkgver.tar.gz")
-md5sums=('6e6080d82d8f4d18b38518d4de1a5106')
+sha256sums=('92534e63cc2cbd363f4f1a20fd0445fef2b297462c7fdf7483c3e90454ad362e')
 
 build() {
   cd "${_name/-/_}-$pkgver"
