@@ -12,5 +12,7 @@ Type=simple
 EnvironmentFile=-/etc/qth_panasonic_viera.env
 ExecStart=qth_panasonic_viera ${TV_HOSTNAME} ${TV_QTH_PATH}
 
+# Allow time for the TV's name to be resolvable via DNS
 Restart=on-failure
+RestartSec=20
 DynamicUser=yes
