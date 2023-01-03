@@ -2,12 +2,12 @@ pkgname="qth_zwave_js"
 pkgdesc="Qth web interface"
 url="https://github.com/mossblaser/${name}"
 pkgver="0.1.2"
-pkgrel="3"
+pkgrel="4"
 arch=('any')
 license=('GPL2')
 
-depends=('nodejs>=19.0.0' 'nodejs<20.0.0')
-makedepends=('nodejs>=19.0.0' 'nodejs<20.0.0' 'npm')
+depends=('nodejs-lts-hydrogen')
+makedepends=('nodejs-lts-hydrogen' 'npm')
 
 source=("${pkgname}-${pkgver}.tar.gz::https://github.com/mossblaser/$pkgname/archive/v$pkgver.tar.gz"
         "generate_indices.js"
