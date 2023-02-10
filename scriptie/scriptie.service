@@ -1,0 +1,20 @@
+[Unit]
+Description=Simple UI for launching and monitoring scripts
+After=network-online.target
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+
+Environment="SCRIPTIE_PORT=8080"
+
+Type=simple
+ExecStart=scriptie --port=${SCRIPTIE_PORT} ${CONFIGURATION_DIRECTORY}
+Restart=on-failure
+
+ConfigurationDirectory=scriptie
+ConfigurationDirectoryMode=0775
+
+User=scriptie
+Group=scriptie
