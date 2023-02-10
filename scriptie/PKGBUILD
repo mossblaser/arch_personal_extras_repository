@@ -1,7 +1,7 @@
 pkgname="scriptie"
 pkgdesc="Simple UI for launching and monitoring scripts"
 url="https://github.com/mossblaser/scriptie"
-pkgver="0.0.1"
+pkgver="0.1.0"
 pkgrel="0"
 arch=('any')
 license=('GPL2')
@@ -11,7 +11,7 @@ depends=('python-aiohttp' 'python-setuptools')
 source=("https://pypi.io/packages/source/${pkgname::1}/$pkgname/$pkgname-$pkgver.tar.gz"
         "$pkgname.sysusers"
         "$pkgname.service")
-md5sums=('7d3246c7296554f6579a13446979014a'
+md5sums=('776e7ed3e81b70ae7e547352baeb460b'
          '9b15f3452263b5c2e38cdccdb7af38ab'
          '7433a9aedfc0a08cb96d74581fad330e')
 
