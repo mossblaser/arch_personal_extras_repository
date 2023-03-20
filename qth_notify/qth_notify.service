@@ -1,0 +1,13 @@
+[Unit]
+Description=Show notifications via qth
+
+[Install]
+WantedBy=default.target
+
+[Service]
+Type=simple
+ExecStart=qth-notify ${QTH_NOTIFY_PATH}
+
+# Allow time for the TV's name to be resolvable via DNS
+Restart=on-failure
+RestartSec=20

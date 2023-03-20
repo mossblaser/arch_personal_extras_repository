@@ -1,0 +1,27 @@
+pkgname="qth_notify"
+pkgdesc="Show notifications via Qth"
+url="https://github.com/mossblaser/qth_notify"
+pkgver="0.0.1"
+pkgrel="0"
+arch=('any')
+license=('GPL3')
+
+depends=('python-qth>=0.7.0' 'python-setuptools' 'python')
+makedepends=(python-build python-installer python-wheel)
+
+source=("https://pypi.io/packages/source/${pkgname::1}/$pkgname/$pkgname-$pkgver.tar.gz"
+        "${pkgname}.service")
+sha256sums=('3242fa46d9e5907c7c6d646c28c183329e87276b0d5e7a4ceb4a535a3f89ed0a'
+            'c001e0a62012cdb09c043c4bf9d5d55f61adea7adc3d01bf2fa55a46cabaf47c')
+
+build() {
+  cd "$pkgname-$pkgver"
+  python -m build --wheel --no-isolation
+}
+
+package() {
+  cd "$pkgname-$pkgver"
+  python -m installer --destdir="$pkgdir" dist/*.whl
+  
+  install -Dm644 "$srcdir/${pkgname}.service" "$pkgdir/usr/lib/systemd/user/${pkgname}.service"
+}
