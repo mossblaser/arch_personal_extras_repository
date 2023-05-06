@@ -1,0 +1,30 @@
+pkgname="memories"
+pkgdesc="A logger for memories of our children."
+url="https://github.com/mossblaser/memories"
+pkgver="0.0.2"
+pkgrel="0"
+arch=('any')
+license=('GPL2')
+
+depends=('python-aiohttp' 'python-jinja' 'python-setuptools')
+
+source=("https://github.com/mossblaser/${pkgname}/archive/refs/tags/v$pkgver.tar.gz"
+        "$pkgname.sysusers"
+        "$pkgname.service")
+md5sums=('706b5d3d7ca28d11520d068f8f4c59c1'
+         '6b85b02ef8644334a281dfdc9cb59998'
+         '69d36a640a54002f33615d38a80f1e9f')
+
+build() {
+  cd "$pkgname-$pkgver"
+  echo "from setuptools import setup; setup()" > setup.py
+  python setup.py build
+}
+
+package() {
+  cd "$pkgname-$pkgver"
+  python setup.py install --root="$pkgdir" --optimize=1 --skip-build
+	
+	install -D -m644 "${srcdir}/$pkgname.sysusers" "${pkgdir}/usr/lib/sysusers.d/$pkgname.conf"
+	install -Dm644 "$srcdir/$pkgname.service" "$pkgdir/usr/lib/systemd/system/$pkgname.service"
+}

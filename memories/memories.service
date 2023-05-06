@@ -1,0 +1,19 @@
+[Unit]
+Description=A logger for memories of our children.
+After=network-online.target
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+
+Environment="MEMORIES_PORT=8001"
+
+Type=simple
+ExecStart=memories --port=${MEMORIES_PORT} ${STATE_DIRECTORY}/memories.db
+Restart=on-failure
+
+StateDirectory=memories
+
+User=memories
+Group=memories
