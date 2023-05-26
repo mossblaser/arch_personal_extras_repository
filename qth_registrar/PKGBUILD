@@ -2,11 +2,11 @@ pkgname="qth_registrar"
 pkgdesc="A Qth Registrar implementation"
 url="https://github.com/mossblaser/qth_registrar"
 pkgver="0.3.0"
-pkgrel="0"
+pkgrel="1"
 arch=('any')
 license=('GPL2')
 
-depends=('python-qth>=0.7.0' 'python-setuptools' 'python>=3.10.0' 'python<3.11.0')
+depends=('python-qth>=0.7.0' 'python-setuptools' 'python>=3.11.0' 'python<3.12.0')
 
 source=("https://pypi.io/packages/source/${pkgname::1}/$pkgname/$pkgname-$pkgver.tar.gz"
         "${pkgname/_/.}.service")
