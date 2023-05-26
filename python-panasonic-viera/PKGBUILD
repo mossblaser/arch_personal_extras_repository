@@ -3,7 +3,7 @@ pkgname="python-${_name//_/-}"
 pkgdesc="library to control certain panasonic TVs"
 url="https://github.com/florianholzapfel/panasonic-viera"
 pkgver="0.4.0"
-pkgrel="3"
+pkgrel="4"
 arch=('any')
 license=('MIT')
 
