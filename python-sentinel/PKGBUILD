@@ -3,11 +3,11 @@ pkgname="python-$_name"
 pkgdesc="creates simple sentinel objects."
 url="https://github.com/eddieantonio/sentinel"
 pkgver="0.3.0"
-pkgrel="3"
+pkgrel="4"
 arch=('any')
 license=('MIT')
 
-depends=('python>=3.11.0' 'python<3.12.0')
+depends=('python>=3.12.0' 'python<3.13.0')
 makedepends=('python-setuptools')
 
 source=("https://pypi.io/packages/source/${_name::1}/$_name/$_name-$pkgver.tar.gz")

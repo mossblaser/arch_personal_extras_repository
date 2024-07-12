@@ -2,11 +2,11 @@ pkgname="memories"
 pkgdesc="A logger for memories of our children."
 url="https://github.com/mossblaser/memories"
 pkgver="0.0.4"
-pkgrel="1"
+pkgrel="2"
 arch=('any')
 license=('GPL2')
 
-depends=('python-aiohttp' 'python-jinja' 'python-setuptools')
+depends=('python-aiohttp' 'python-jinja' 'python-setuptools' 'python>=3.12.0' 'python<3.13.0')
 
 source=("https://github.com/mossblaser/${pkgname}/archive/refs/tags/v$pkgver.tar.gz"
         "$pkgname.sysusers"

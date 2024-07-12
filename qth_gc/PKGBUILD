@@ -2,11 +2,11 @@ pkgname="qth_gc"
 pkgdesc="Removes non-Qth registered persistent MQTT messages"
 url="https://github.com/mossblaser/qth_gc"
 pkgver="0.1.2"
-pkgrel="3"
+pkgrel="4"
 arch=('any')
 license=('GPL2')
 
-depends=('python-qth>=0.6.0' 'python-setuptools' 'python>=3.11.0' 'python<3.12.0')
+depends=('python-qth>=0.6.0' 'python-setuptools' 'python>=3.12.0' 'python<3.13.0')
 
 source=("https://pypi.io/packages/source/${pkgname::1}/$pkgname/$pkgname-$pkgver.tar.gz")
 md5sums=('c6ea11c795661b10ac7f2fc3c5359bef')

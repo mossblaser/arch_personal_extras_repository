@@ -3,11 +3,11 @@ pkgname="python-$_name"
 pkgdesc="Qb-Than's Home-automation messaging library"
 url="https://github.com/mossblaser/qth"
 pkgver="0.2.0"
-pkgrel="1"
+pkgrel="2"
 arch=('any')
 license=('GPL2')
 
-depends=('python-qth>=0.7.0' 'python>=3.11.0' 'python<3.12.0')
+depends=('python-qth>=0.7.0' 'python>=3.12.0' 'python<3.13.0')
 makedepends=('python-setuptools')
 
 source=("https://pypi.io/packages/source/${_name::1}/$_name/${_name/-/_}-$pkgver.tar.gz")
