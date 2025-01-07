@@ -1,0 +1,22 @@
+pkgname="bin_computer"
+pkgdesc="The server for my little bin computer"
+url="https://github.com/mossblaser/bin_computer"
+pkgver="0.0.0"
+pkgrel="2"
+arch=('any')
+license=('GPL2')
+
+depends=('inkscape' 'python-aiohttp>=3.0.0' 'python-beautifulsoup4>=4.0.0' 'python>=3.12.0' 'python<3.13.0')
+
+commit=04b52f7d86b2231efd3ea1918d4a80f2aad87473
+
+source=("https://github.com/mossblaser/bin_computer/archive/$commit.zip")
+md5sums=('39daf1dbf5ab7ed41fef1e8e368bb6a7')
+
+
+package() {
+  mkdir -p $pkgdir/opt
+  cp -r bin_computer-${commit}/server $pkgdir/opt/bin_computer
+  #cd "$pkgname-$pkgver"
+  #python setup.py install --root="$pkgdir" --optimize=1 --skip-build
+}
