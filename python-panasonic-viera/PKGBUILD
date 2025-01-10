@@ -3,11 +3,11 @@ pkgname="python-${_name//_/-}"
 pkgdesc="library to control certain panasonic TVs"
 url="https://github.com/florianholzapfel/panasonic-viera"
 pkgver="0.4.0"
-pkgrel="5"
+pkgrel="6"
 arch=('any')
 license=('MIT')
 
-depends=('python-pycryptodome' 'python-xmltodict' 'python-aiohttp' 'python>=3.12.0' 'python<3.13.0')
+depends=('python-pycryptodome' 'python-xmltodict' 'python-aiohttp' 'python>=3.13.0' 'python<3.14.0')
 makedepends=('python-setuptools')
 
 source=("https://pypi.io/packages/source/${_name::1}/$_name/$_name-$pkgver.tar.gz")
