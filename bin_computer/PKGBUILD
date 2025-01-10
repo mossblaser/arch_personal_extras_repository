@@ -2,16 +2,16 @@ pkgname="bin_computer"
 pkgdesc="The server for my little bin computer"
 url="https://github.com/mossblaser/bin_computer"
 pkgver="0.0.0"
-pkgrel="2"
+pkgrel="4"
 arch=('any')
 license=('GPL2')
 
 depends=('inkscape' 'python-aiohttp>=3.0.0' 'python-beautifulsoup4>=4.0.0' 'python>=3.12.0' 'python<3.13.0')
 
-commit=04b52f7d86b2231efd3ea1918d4a80f2aad87473
+commit=5c1de86472b6e410ce2215f2f914b0e3f3ede972
 
 source=("https://github.com/mossblaser/bin_computer/archive/$commit.zip")
-md5sums=('39daf1dbf5ab7ed41fef1e8e368bb6a7')
+md5sums=('ca0732e61241ea7eaa1e87396c270ee2')
 
 
 package() {
