@@ -1,0 +1,24 @@
+_name="pysunspec"
+pkgname="python-$_name"
+pkgdesc="SunSpec Python library for interfacing with SunSpec devices."
+url="https://github.com/sunspec/pysunspec"
+pkgver="2.1.1"
+pkgrel="0"
+arch=('any')
+license=('MIT')
+
+depends=('python-pyserial')
+makedepends=('python-setuptools')
+
+source=("https://pypi.io/packages/source/${_name::1}/$_name/$_name-$pkgver.tar.gz")
+md5sums=('1953cdeedcc0b469e0e90b8b7d6f7f5b')
+
+build() {
+  cd "$_name-$pkgver"
+  python setup.py build
+}
+
+package() {
+  cd "$_name-$pkgver"
+  python setup.py install --root="$pkgdir" --optimize=1 --skip-build
+}
