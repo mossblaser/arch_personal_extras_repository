@@ -1,0 +1,26 @@
+pkgname="prometheus_pysunspec2_exporter"
+pkgdesc="A Prometheus exporter for sunspec devices based on pySunSpec2."
+url="https://github.com/mossblaser/prometheus_pysunspec2_exporter"
+pkgver="0.0.1"
+pkgrel="1"
+arch=('any')
+license=('GPL3')
+
+depends=('python-pysunspec2' 'python-pyyaml' 'python-prometheus_client' 'python>=3.13.0' 'python<3.14.0')
+makedepends=('python-setuptools' 'python-build')
+
+source=("https://pypi.io/packages/source/${pkgname::1}/$pkgname/$pkgname-$pkgver.tar.gz"
+        "${pkgname}.service")
+sha256sums=('cf0186d8aee732c8988b58873c0457ac0098a32a7477cd27b1cce9e415043ec9'
+            'b520f4ea8549a952784f23cd25056459703fbd7d5ef0334fc8d6e6a37c183379')
+
+build() {
+  cd "$pkgname-$pkgver"
+  python -m build --wheel
+}
+
+package() {
+  cd "$pkgname-$pkgver"
+  PIP_CONFIG_FILE=/dev/null pip install "dist/$pkgname-$pkgver-py3-none-any.whl" --isolated --root="$pkgdir" --ignore-installed --no-deps
+  install -Dm644 "$srcdir/${pkgname}.service" "$pkgdir/usr/lib/systemd/system/${pkgname}.service"
+}

@@ -1,0 +1,13 @@
+[Unit]
+Description=Prometheus pySunSpec2 exporter
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=prometheus_pysunspec2_exporter \
+  /etc/prometheus_pysunspec2_exporter.yml
+Restart=on-failure
+
+DynamicUser=yes
