@@ -2,7 +2,7 @@ pkgname="prometheus_pysunspec2_exporter"
 pkgdesc="A Prometheus exporter for sunspec devices based on pySunSpec2."
 url="https://github.com/mossblaser/prometheus_pysunspec2_exporter"
 pkgver="0.0.2"
-pkgrel="1"
+pkgrel="2"
 arch=('any')
 license=('GPL3')
 
