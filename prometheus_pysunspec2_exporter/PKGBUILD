@@ -1,8 +1,8 @@
 pkgname="prometheus_pysunspec2_exporter"
 pkgdesc="A Prometheus exporter for sunspec devices based on pySunSpec2."
 url="https://github.com/mossblaser/prometheus_pysunspec2_exporter"
-pkgver="0.0.2"
-pkgrel="2"
+pkgver="0.0.3"
+pkgrel="1"
 arch=('any')
 license=('GPL3')
 
@@ -11,7 +11,7 @@ makedepends=('python-setuptools' 'python-build')
 
 source=("https://pypi.io/packages/source/${pkgname::1}/$pkgname/$pkgname-$pkgver.tar.gz"
         "${pkgname}.service")
-sha256sums=('c9c247f93d90e35d322158e8076920f945695ad1b197ec66fed91abdfbe502d1'
+sha256sums=('dd2ebbf217d6d8be93c817b301f5e1a74ecbe46ad5d9cb8ad1c6ef0954c18126'
             'b520f4ea8549a952784f23cd25056459703fbd7d5ef0334fc8d6e6a37c183379')
 
 build() {
