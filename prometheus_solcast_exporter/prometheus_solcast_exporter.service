@@ -1,0 +1,16 @@
+[Unit]
+Description=Prometheus solcast exporter
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=prometheus_solcast_exporter \
+  "$SOLCAST_RESOURCE_ID" \
+  --api-key "$SOLCAST_API_KEY"
+Restart=on-failure
+
+EnvironmentFile=/etc/prometheus_solcast_exporter.env
+
+DynamicUser=yes
