@@ -5,7 +5,7 @@
 
 pkgname=mosquitto
 pkgver=2.0.15
-pkgrel=3
+pkgrel=4
 pkgdesc="An Open Source MQTT Broker"
 arch=(x86_64)
 url="https://mosquitto.org/"
@@ -27,6 +27,7 @@ build() {
         -DCMAKE_INSTALL_SBINDIR=bin \
         -DCMAKE_INSTALL_SYSCONFDIR=/etc \
         -DCMAKE_BUILD_TYPE=None \
+        -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
         -DWITH_BUNDLED_DEPS=OFF \
         -DWITH_SRV=ON \
         -DWITH_SYSTEMD=ON \
